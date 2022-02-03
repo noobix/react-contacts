@@ -1,4 +1,6 @@
 import React from "react";
+import {v4 as uuid} from 'uuid'
+import {Form, Button} from 'react-bootstrap'
 
 class form extends React.Component{
 constructor(){
@@ -8,7 +10,7 @@ constructor(){
     handleNameChange = (e) =>{
         this.setState({name: e.target.value})
     }
-    handlephoneChange = (e) =>{
+    handlePhoneChange = (e) =>{
         this.setState({phoneNumber: e.target.value})
     }
     handleLocationChange = (e) =>{
@@ -16,24 +18,32 @@ constructor(){
     }
     handleSubmit = (e) =>{
         e.preventDefault()
-        let newContact={name: this.state.name, phoneNumber: this.state.phone, location:this.state.location}
+        let newContact={id: uuid(),name: this.state.name, phoneNumber: this.state.phoneNumber, location:this.state.location}
         this.props.addNewContact(newContact)
         this.setState({name: "", phoneNumber: "", location: ""})
     }
 render(){
     return(<React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-            <label name="name">Name</label>
-            <input name="name" type="text" placeholder="Name" 
-            value={this.state.name} onChange={this.handleNameChange}/>
-            <label name="Phone">Phone Number</label>
-            <input name="phone" type="text" placeholder="Phone Number" 
-            value={this.state.phoneNumber} onChange={this.handlephoneChange}/>
-            <label name="location">Location</label>
-            <input name="location" type="text" placeholder="Location" 
-            value={this.state.location} onChange={this.handleLocationChange}/>
-            <input name="submit" type="submit" />
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter Name" 
+                value={this.state.name} onChange={this.handleNameChange}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control type="text" placeholder="Phone Number" 
+                value={this.state.phoneNumber} onChange={this.handlePhoneChange}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicLocation">
+                <Form.Label>Location</Form.Label>
+                <Form.Control type="text" placeholder="Location" 
+                value={this.state.location} onChange={this.handleLocationChange}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
     </React.Fragment>)
     }
 }
