@@ -48,7 +48,7 @@ class editDelete extends React.Component {
                 <input type='text' placeholder='Location' value={this.state.location} 
                 onChange={(e) => this.setState({location: e.target.value})}/>
             <Modal.Footer>
-                <Button variant="secondary">Close</Button>
+                <Button variant="secondary" onClick={() => this.setState({isShowing: false})}>Close</Button>
                 <Button variant="primary" onClick={() => {this.handleEdit()}}>Save changes</Button>
             </Modal.Footer>
             </Modal>
