@@ -18,7 +18,7 @@ class editDelete extends React.Component {
     }
     render() {
         return (<div>
-            <Col md={3}>
+            <Col md={3} className='m-3'>
                 <Card style={{ width: '16rem' }}>
                 <Card.Img variant="top"/>
                 <Card.Body>
